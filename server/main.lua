@@ -67,7 +67,7 @@ RegisterNetEvent("vorp_billing:server:SendBill", function(data)
     end
 
     if Billing.AllowBillingNegative then
-        target.getUsedCharacter.addCurrency(0, data.amount)
+        target.getUsedCharacter.removeCurrency(0, data.amount)
         Core.NotifyObjective(_source, T.Notifications.bill_successful .. " " .. target.getUsedCharacter.firstname .. " " .. target.getUsedCharacter.lastname .. " " .. T.Notifications.For .. " " .. data.amount, 5000)
         Core.NotifyObjective(data.playerId, T.Notifications.bill_received .. data.amount .. " " .. T.ReceiptInfo.billed_by .. " " .. charname .. " " .. T.Notifications.For .. " " .. data.reason, 5000)
     else
